@@ -1,0 +1,13 @@
+<?php
+
+putenv('DISPLAY_ERRORS_DETAILS=' . false);
+putenv('IS_DEV_MODE=' . true);
+
+putenv('ABAIXO_ASSINADO_DB_DRIVER=');
+putenv('ABAIXO_ASSINADO_DB_HOST=');
+putenv('ABAIXO_ASSINADO_DB_NAME=');
+putenv('ABAIXO_ASSINADO_DB_USER=');
+putenv('ABAIXO_ASSINADO_DB_PASSWORD=');
+putenv('ABAIXO_ASSINADO_DB_PORT=');
+
+putenv('JWT_SECRET_KEY=');

@@ -1,0 +1,8 @@
+- PHPUNIT
+php/vendor/phpunit tests/
+
+- Doctrine
+php/vendor/doctrine
+
+- Doctrine Migrations
+php/vendor/doctrine-migrations
