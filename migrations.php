@@ -10,8 +10,7 @@ return [
     ],
 
     'migrations_paths' => [
-        'FabioChiquezi\PetitionData\Domain\Migration' => 'src/domain/Migrations',
-        'FabioChiquezi\PetitionData\Domain\Migrations\Components' => './Components',
+        'FabioChiquezi\PetitionData\Domain\Migration' => 'src/domain/Migrations'
     ],
 
     'all_or_nothing' => true,

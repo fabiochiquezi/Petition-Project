@@ -12,7 +12,8 @@ $app->group('/dashboard', function(RouteCollectorProxy $group){
         return $response;
     });
 
-    $group->get("/information-general-site", ControllerInfGenSite::class . ':get');
+    $group->get("/information-general-site", ControllerInfGenSite::class . ':getInformations');
+    $group->post("/information-general-site", ControllerInfGenSite::class . ':setInformations');
 });
 
 
