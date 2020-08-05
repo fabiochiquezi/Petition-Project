@@ -1,0 +1,28 @@
+<doctrine-mapping>
+    <entity 
+        name="FabioChiquezi\PetitionData\Domain\InformationGeneralSite\InformationGeneralSite" 
+        table="information_general_site">
+
+        <id 
+            name="id" 
+            column="id" 
+            type="integer">
+                <generator strategy="IDENTITY" />
+        </id>
+
+        <field name="titleSeo"          column="title_seo"          type="string"     length="150" />
+        <field name="descriptionSeo"    column="description_seo"    type="text" />
+        <field name="imageSeo"          column="image_seo"          type="string"     length="50" />
+        <field name="whatsapp"          column="whatsapp"           type="string"     length="50" />
+        <field name="facebook"          column="facebook"           type="string"     length="50" />
+        <field name="twitter"           column="twitter"            type="string"     length="50" />
+        <field name="mobileBanner"      column="mobile_banner"      type="string"     length="50" />
+        <field name="tabletBanner"      column="tablet_banner"      type="string"     length="50" />
+        <field name="desktopBanner"     column="desktop_banner"     type="string"     length="50" />
+        <field name="titleSite"         column="title_site"         type="string"     length="150" />
+        <field name="subtitleSite"      column="subtitle_site"      type="string"     length="50" />
+        <field name="contentSite"       column="content_site"       type="text" />
+        <field name="videoSite"         column="video_site"         type="string"     length="50" />
+        
+    </entity>
+</doctrine-mapping>

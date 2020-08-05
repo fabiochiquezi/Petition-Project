@@ -10,7 +10,8 @@ class EntityManagerFactory{
 
     public function getEntityManager(): EntityManagerInterface
     {
-        $paths = array(__DIR__ . '/../../');
+        // $paths = array(__DIR__ . '/../../');
+        $paths = array(__DIR__ . '/map');
         $isDevMode = getenv('IS_DEV_MODE');
 
         // the connection configuration
@@ -22,7 +23,7 @@ class EntityManagerFactory{
             'driver'   =>  getenv('ABAIXO_ASSINADO_DB_DRIVER')
         );
 
-        $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+        $config = Setup::createXMLMetadataConfiguration($paths, $isDevMode);
         return EntityManager::create($dbParams, $config);
     }
 

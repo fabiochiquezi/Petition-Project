@@ -3,7 +3,18 @@
 namespace FabioChiquezi\PetitionData\Domain\InformationGeneralSite;
 
 class InformationGeneralSite{
-    public function phpunit(){
-        return 2500;
-    }
+    private $id;
+    private $titleSeo;
+    private $descriptionSeo;
+    private $imageSeo;
+    private $whatsapp;
+    private $facebook;
+    private $twitter;
+    private $mobileBanner;
+    private $tabletBanner;
+    private $desktopBanner;
+    private $titleSite;
+    private $subtitleSite;
+    private $contentSite;
+    private $videoSite;
 }

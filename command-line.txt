@@ -6,3 +6,4 @@ php/vendor/doctrine
 
 - Doctrine Migrations
 php/vendor/doctrine-migrations
+    
