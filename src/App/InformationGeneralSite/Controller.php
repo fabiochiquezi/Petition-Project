@@ -38,11 +38,13 @@ class Controller{
             $payload['ok'] = true;
             $payload['message'] = 'Dados resgatados com sucesso';
             $payload['data'] = $newArr;
+            $payload['devMessage'] = '';
         }
         catch(Exception | Throwable $e){
             $payload['ok'] = false;
             $payload['message'] = 'Não foi possível resgatar os dados';
             $payload['data'] = [];
+            $payload['devMessage'] = $e->getMessage();
         }
 
         $response->getBody()->write(json_encode($payload));
@@ -70,6 +72,7 @@ class Controller{
         $payload = [];
         $payload['ok'] = $messageReturns[0];
         $payload['message'] = $messageReturns[1];
+        $payload['devMessage'] = $messageReturns[2] ?? '';
 
         $response->getBody()->write(json_encode($payload));
         return $response->withHeader('Content-Type', 'application/json');
@@ -79,10 +82,10 @@ class Controller{
         try{
             $repository->deleteAll($allItens);
             $messageReturns = $this->addData($repository, $data);
-            return [true, 'Dados atualizados com sucesso'];
+            return [true, 'Dados atualizados com sucesso', ''];
         }
         catch(Exception | Throwable $e){
-            return [false, 'Banco de dados incossistente: não foi possível deletar os dados.'];
+            return [false, 'Banco de dados incossistente: não foi possível deletar os dados.', $e->getMessage()];
         }
     }
 
@@ -90,10 +93,10 @@ class Controller{
     {
         try{
             $repository->updateData($allItens, $data);
-            return [true, 'Dados atualizados com sucesso'];
+            return [true, 'Dados atualizados com sucesso', ''];
         }
         catch(Exception | Throwable $e){
-            return [false, 'Não foi possível atualizar os dados'];
+            return [false, 'Não foi possível atualizar os dados', $e->getMessage()];
         }
     }
 
@@ -101,10 +104,10 @@ class Controller{
     {
         try{
             $repository->addData($data);
-            return [true, 'Dados atualizados com sucesso'];
+            return [true, 'Dados atualizados com sucesso', ''];
         }
         catch(Exception | Throwable $e){
-            return [false, 'Não foi possível atualizar os dados'];
+            return [false, 'Não foi possível atualizar os dados', $e->getMessage()];
         }
     }
 }

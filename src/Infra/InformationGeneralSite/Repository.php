@@ -6,6 +6,7 @@ use Exception;
 use FabioChiquezi\PetitionData\Domain\InformationGeneralSite\InformationGeneralSite;
 use FabioChiquezi\PetitionData\Infra\Doctrine\EntityManagerFactory;
 use FabioChiquezi\PetitionData\Domain\InformationGeneralSite\RepositoryInterface;
+use FabioChiquezi\PetitionData\Domain\WhatsApp;
 use Throwable;
 
 class Repository implements RepositoryInterface{
@@ -42,7 +43,7 @@ class Repository implements RepositoryInterface{
         $item->setTitleSeo       ( $data['titleSeo'] ?? '' );        
         $item->setDescriptionSeo ( $data['descriptionSeo'] ?? '' );        
         $item->setImageSeo       ( $data['imageSeo'] ?? '' );        
-        $item->setWhatsapp       ( $data['whatsapp'] ?? '' );        
+        $item->setWhatsapp( ( new WhatsApp($data['whatsapp']) )->getNumber() ?? '' );        
         $item->setFacebook       ( $data['facebook'] ?? '' );        
         $item->setTwitter        ( $data['twitter'] ?? '' );
         $item->setMobileBanner   ( $data['mobileBanner'] ?? '' );

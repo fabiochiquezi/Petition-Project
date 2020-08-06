@@ -2,6 +2,9 @@
 
 namespace FabioChiquezi\PetitionData\Domain\InformationGeneralSite;
 
+use Doctrine\Migrations\Query\Exception\InvalidArguments;
+use Exception;
+
 class InformationGeneralSite{
     private $id;
     private $titleSeo;
@@ -25,8 +28,10 @@ class InformationGeneralSite{
 
     public function setTitleSeo($titleSeo)
     {
+        if(strlen($titleSeo) > 150) 
+            throw new InvalidArguments('titleSeo muito grande, máximo de caracteres permitido é 150');
+        
         $this->titleSeo = $titleSeo;
-
         return $this;
     }
 
@@ -49,8 +54,10 @@ class InformationGeneralSite{
 
     public function setImageSeo($imageSeo)
     {
-        $this->imageSeo = $imageSeo;
+        if(strlen($imageSeo) > 50)
+            throw new InvalidArguments('imageSeo muito grande, máximo de caracteres permitido é 50');
 
+        $this->imageSeo = $imageSeo;
         return $this;
     }
 
@@ -61,8 +68,10 @@ class InformationGeneralSite{
 
     public function setWhatsapp($whatsapp)
     {
-        $this->whatsapp = $whatsapp;
+        if(strlen($whatsapp) > 50)
+        throw new InvalidArguments('whatsapp muito grande, máximo de caracteres permitido é 50');
 
+        $this->whatsapp = $whatsapp;
         return $this;
     }
 
@@ -73,8 +82,10 @@ class InformationGeneralSite{
 
     public function setFacebook($facebook)
     {
-        $this->facebook = $facebook;
+        if(strlen($facebook) > 50)
+        throw new InvalidArguments('facebook muito grande, máximo de caracteres permitido é 50');
 
+        $this->facebook = $facebook;
         return $this;
     }
 
@@ -85,8 +96,10 @@ class InformationGeneralSite{
 
     public function setTwitter($twitter)
     {
-        $this->twitter = $twitter;
+        if(strlen($twitter) > 50)
+        throw new InvalidArguments('twitter muito grande, máximo de caracteres permitido é 50');
 
+        $this->twitter = $twitter;
         return $this;
     }
 
@@ -97,8 +110,10 @@ class InformationGeneralSite{
 
     public function setMobileBanner($mobileBanner)
     {
-        $this->mobileBanner = $mobileBanner;
+        if(strlen($mobileBanner) > 50)
+        throw new InvalidArguments('mobileBanner muito grande, máximo de caracteres permitido é 50');
 
+        $this->mobileBanner = $mobileBanner;
         return $this;
     }
 
@@ -109,8 +124,10 @@ class InformationGeneralSite{
 
     public function setTabletBanner($tabletBanner)
     {
-        $this->tabletBanner = $tabletBanner;
+        if(strlen($tabletBanner) > 50)
+        throw new InvalidArguments('tabletBanner muito grande, máximo de caracteres permitido é 50');
 
+        $this->tabletBanner = $tabletBanner;
         return $this;
     }
 
@@ -121,8 +138,10 @@ class InformationGeneralSite{
 
     public function setDesktopBanner($desktopBanner)
     {
-        $this->desktopBanner = $desktopBanner;
+        if(strlen($desktopBanner) > 50)
+        throw new InvalidArguments('desktopBanner muito grande, máximo de caracteres permitido é 50');
 
+        $this->desktopBanner = $desktopBanner;
         return $this;
     }
 
@@ -133,8 +152,10 @@ class InformationGeneralSite{
 
     public function setTitleSite($titleSite)
     {
-        $this->titleSite = $titleSite;
+        if(strlen($titleSite) > 50)
+        throw new InvalidArguments('titleSite muito grande, máximo de caracteres permitido é 50');
 
+        $this->titleSite = $titleSite;
         return $this;
     }
 
@@ -145,8 +166,10 @@ class InformationGeneralSite{
 
     public function setSubtitleSite($subtitleSite)
     {
-        $this->subtitleSite = $subtitleSite;
+        if(strlen($subtitleSite) > 50)
+        throw new InvalidArguments('subtitleSite muito grande, máximo de caracteres permitido é 50');
 
+        $this->subtitleSite = $subtitleSite;
         return $this;
     }
 
@@ -158,7 +181,6 @@ class InformationGeneralSite{
     public function setContentSite($contentSite)
     {
         $this->contentSite = $contentSite;
-
         return $this;
     }
 
@@ -169,8 +191,10 @@ class InformationGeneralSite{
 
     public function setVideoSite($videoSite)
     {
-        $this->videoSite = $videoSite;
+        if(strlen($videoSite) > 50)
+        throw new InvalidArguments('videoSite muito grande, máximo de caracteres permitido é 50');
 
+        $this->videoSite = $videoSite;
         return $this;
     }
 
