@@ -12,17 +12,17 @@
 
         <field name="titleSeo"       nullable="true"            column="title_seo"          type="string"     length="150" />
         <field name="descriptionSeo" nullable="true"            column="description_seo"    type="text" />
-        <field name="imageSeo"       nullable="true"            column="image_seo"          type="string"     length="50" />
-        <field name="whatsapp"       nullable="true"            column="whatsapp"           type="string"     length="50" />
-        <field name="facebook"       nullable="true"            column="facebook"           type="string"     length="50" />
-        <field name="twitter"        nullable="true"            column="twitter"            type="string"     length="50" />
-        <field name="mobileBanner"   nullable="true"            column="mobile_banner"      type="string"     length="50" />
-        <field name="tabletBanner"   nullable="true"            column="tablet_banner"      type="string"     length="50" />
-        <field name="desktopBanner"  nullable="true"            column="desktop_banner"     type="string"     length="50" />
+        <field name="imageSeo"       nullable="true"            column="image_seo"          type="string"     length="150" />
+        <field name="whatsapp"       nullable="true"            column="whatsapp"           type="string"     length="14" />
+        <field name="facebook"       nullable="true"            column="facebook"           type="string"     length="150" />
+        <field name="twitter"        nullable="true"            column="twitter"            type="string"     length="150" />
+        <field name="mobileBanner"   nullable="true"            column="mobile_banner"      type="string"     length="150" />
+        <field name="tabletBanner"   nullable="true"            column="tablet_banner"      type="string"     length="150" />
+        <field name="desktopBanner"  nullable="true"            column="desktop_banner"     type="string"     length="150" />
         <field name="titleSite"      nullable="true"            column="title_site"         type="string"     length="150" />
-        <field name="subtitleSite"   nullable="true"            column="subtitle_site"      type="string"     length="50" />
+        <field name="subtitleSite"   nullable="true"            column="subtitle_site"      type="string"     length="150" />
         <field name="contentSite"    nullable="true"            column="content_site"       type="text" />
-        <field name="videoSite"      nullable="true"            column="video_site"         type="string"     length="50" />
+        <field name="videoSite"      nullable="true"            column="video_site"         type="string"     length="150" />
         
     </entity>
 </doctrine-mapping>

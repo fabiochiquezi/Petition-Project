@@ -2,44 +2,26 @@
 
 namespace FabioChiquezi\PetitionData\Infra\InformationGeneralSite;
 
-use Exception;
 use FabioChiquezi\PetitionData\Domain\InformationGeneralSite\InformationGeneralSite;
-use FabioChiquezi\PetitionData\Infra\Doctrine\EntityManagerFactory;
 use FabioChiquezi\PetitionData\Domain\InformationGeneralSite\RepositoryInterface;
 use FabioChiquezi\PetitionData\Domain\WhatsApp;
-use Throwable;
 
 class Repository implements RepositoryInterface{
-    private $entityManager;
+    private $connect;
 
-    public function __construct(){
-        $entityManagerFactory = new EntityManagerFactory();
-        $this->entityManager = $entityManagerFactory->getEntityManager();
+    public function __construct($connect){
+        $this->connect = $connect;
     }
 
     public function getAll(): array
     {
-        $repository = $this->entityManager->getRepository(InformationGeneralSite::class);
-        return $repository->findAll();
-    }
-
-    public function updateData($item, $data)
-    {
-        $this->setNewData($item, $data);
-        $this->entityManager->flush();
+        $repo = $this->connect->getRepository(InformationGeneralSite::class);
+        return $repo->findAll();
     }
 
     public function addData($data)
     {
-        $newItem = new InformationGeneralSite();
-        $this->setNewData($newItem, $data);
-
-        $this->entityManager->persist($newItem);
-        $this->entityManager->flush();
-    }
-
-    private function setNewData($item, $data)
-    {
+        $item = new InformationGeneralSite();
         $item->setTitleSeo       ( $data['titleSeo'] ?? '' );        
         $item->setDescriptionSeo ( $data['descriptionSeo'] ?? '' );        
         $item->setImageSeo       ( $data['imageSeo'] ?? '' );        
@@ -53,13 +35,16 @@ class Repository implements RepositoryInterface{
         $item->setSubtitleSite   ( $data['subtitleSite'] ?? '' );
         $item->setContentSite    ( $data['contentSite'] ?? '' );
         $item->setVideoSite      ( $data['videoSite'] ?? '' );
+
+        $this->connect->persist($item);
+        $this->connect->flush();
     }
 
     public function deleteAll($allItens)
     {
         foreach($allItens as $item){
-            $this->entityManager->remove($item);
+            $this->connect->remove($item);
         }
-        $this->entityManager->flush();
+        $this->connect->flush();
     }
 }

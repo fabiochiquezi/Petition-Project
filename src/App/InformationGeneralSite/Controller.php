@@ -3,42 +3,56 @@
 namespace FabioChiquezi\PetitionData\App\InformationGeneralSite;
 
 use Exception;
+use FabioChiquezi\PetitionData\Infra\Doctrine\EntityManagerFactory;
 use FabioChiquezi\PetitionData\Infra\InformationGeneralSite\Repository;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Throwable;
 
 class Controller{
+    private $repository;
+
+    public function __construct(){
+        $entityManagerFactory = new EntityManagerFactory();
+        $this->repository = new Repository(
+            $entityManagerFactory->getEntityManager()
+        );
+    }
 
     public function getInformations(Request $request, Response $response, $args): Response
     {
         $payload = [];
 
         try{
-            $repository = new Repository();
-            $item = $repository->getAll()[0];
-    
-            $newArr = [
-                'id' => $item->getId(),
-                'titleSeo' => $item->getTitleSeo(),
-                'descriptionSeo' => $item->getDescriptionSeo(),
-                'imageSeo' => $item->getImageSeo(),
-                'whatsapp' => $item->getWhatsapp(),
-                'facebook' => $item->getFacebook(),
-                'twitter' => $item->getTwitter(),
-                'mobileBanner' => $item->getMobileBanner(),
-                'tabletBanner' => $item->getTabletBanner(),
-                'desktopBanner' => $item->getDesktopBanner(),
-                'titleSite' => $item->getTitleSite(),
-                'subtitleSite' => $item->getSubtitleSite(),
-                'contentSite' => $item->getContentSite(),
-                'videoSite' => $item->getVideoSite()
-            ];
+            $item = $this->repository->getAll();
 
             $payload['ok'] = true;
-            $payload['message'] = 'Dados resgatados com sucesso';
-            $payload['data'] = $newArr;
             $payload['devMessage'] = '';
+            $payload['message'] = 'Dados resgatados com sucesso';
+            $payload['data'] = [];
+
+            if(count($item)){
+                $item = $item[0];
+                $newArr = [
+                    'id' => $item->getId(),
+                    'titleSeo' => $item->getTitleSeo(),
+                    'descriptionSeo' => $item->getDescriptionSeo(),
+                    'imageSeo' => $item->getImageSeo(),
+                    'whatsapp' => $item->getWhatsapp(),
+                    'facebook' => $item->getFacebook(),
+                    'twitter' => $item->getTwitter(),
+                    'mobileBanner' => $item->getMobileBanner(),
+                    'tabletBanner' => $item->getTabletBanner(),
+                    'desktopBanner' => $item->getDesktopBanner(),
+                    'titleSite' => $item->getTitleSite(),
+                    'subtitleSite' => $item->getSubtitleSite(),
+                    'contentSite' => $item->getContentSite(),
+                    'videoSite' => $item->getVideoSite()
+                ];
+    
+                $payload['data'] = $newArr;
+            }
+
         }
         catch(Exception | Throwable $e){
             $payload['ok'] = false;
@@ -53,61 +67,25 @@ class Controller{
 
     public function setInformations(Request $request, Response $response, $args): Response
     {
-        $repository = new Repository();
-        $allItens = $repository->getAll();
-
+        $allItens = $this->repository->getAll();
         $data = $request->getParsedBody();
-        $messageReturns = '';
-        
-        if( count($allItens) === 0 ){
-            $messageReturns = $this->addData($repository, $data);
-        }
-        else if(count($allItens) > 1){
-            $messageReturns = $this->deleteAll($repository, $allItens, $data);
-        }
-        else{
-            $messageReturns = $this->updateData($repository, $allItens[0], $data);
-        }
-        
         $payload = [];
-        $payload['ok'] = $messageReturns[0];
-        $payload['message'] = $messageReturns[1];
-        $payload['devMessage'] = $messageReturns[2] ?? '';
+        
+        try{
+            $this->repository->deleteAll($allItens);
+            $this->repository->addData($data);
+
+            $payload['ok'] = true;
+            $payload['message'] = 'Dados atualizados com sucesso';
+            $payload['devMessage'] = '';
+        }
+        catch(Exception | Throwable $e){
+            $payload['ok'] = false;
+            $payload['message'] = 'Não foi possível atualizar os dados';
+            $payload['devMessage'] = $e->getMessage();
+        }
 
         $response->getBody()->write(json_encode($payload));
         return $response->withHeader('Content-Type', 'application/json');
-    }
-
-    public function deleteAll($repository, $allItens, $data){
-        try{
-            $repository->deleteAll($allItens);
-            $messageReturns = $this->addData($repository, $data);
-            return [true, 'Dados atualizados com sucesso', ''];
-        }
-        catch(Exception | Throwable $e){
-            return [false, 'Banco de dados incossistente: não foi possível deletar os dados.', $e->getMessage()];
-        }
-    }
-
-    private function updateData($repository, $allItens, $data)
-    {
-        try{
-            $repository->updateData($allItens, $data);
-            return [true, 'Dados atualizados com sucesso', ''];
-        }
-        catch(Exception | Throwable $e){
-            return [false, 'Não foi possível atualizar os dados', $e->getMessage()];
-        }
-    }
-
-    private function addData($repository, $data)
-    {
-        try{
-            $repository->addData($data);
-            return [true, 'Dados atualizados com sucesso', ''];
-        }
-        catch(Exception | Throwable $e){
-            return [false, 'Não foi possível atualizar os dados', $e->getMessage()];
-        }
     }
 }

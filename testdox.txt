@@ -1,0 +1,7 @@
+Repository (FabioChiquezi\PetitionData\Tests\Integrations\Infra\InformationGeneralSite\Repository)
+ [x] Get all
+ [x] Add data with data set #0
+ [x] Add data exception whats app with data set #0
+ [x] Add data exception whats app with data set #0
+ [x] Delete data with data set #0
+

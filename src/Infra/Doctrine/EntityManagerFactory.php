@@ -4,11 +4,11 @@ namespace FabioChiquezi\PetitionData\Infra\Doctrine;
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
+// use Doctrine\ORM\EntityManagerInterface;
 
 class EntityManagerFactory{
 
-    public function getEntityManager(): EntityManagerInterface
+    public function getEntityManager(): EntityManager
     {
         // $paths = array(__DIR__ . '/../../');
         $paths = array(__DIR__ . '/map');
