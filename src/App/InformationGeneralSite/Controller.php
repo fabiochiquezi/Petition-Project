@@ -3,11 +3,11 @@
 namespace FabioChiquezi\PetitionData\App\InformationGeneralSite;
 
 use Exception;
+use Throwable;
 use FabioChiquezi\PetitionData\Infra\Doctrine\EntityManagerFactory;
 use FabioChiquezi\PetitionData\Infra\InformationGeneralSite\Repository;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Throwable;
 
 class Controller{
     private $repository;
