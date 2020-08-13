@@ -1,3 +1,31 @@
+Custom Form (FabioChiquezi\PetitionData\Tests\Unit\Domain\CustomFormTest\CustomForm)
+ [x] Create basic custom form
+ [x] Set required exception
+ [x] Set type exception
+ [x] Set placeholder
+ [x] Set name exception
+ [x] Set name exception
+ [x] Set name especial
+ [ ] Create sucessfull
+
+Information General Site (FabioChiquezi\PetitionData\Tests\Unit\Domain\InformationGeralSite\InformationGeneralSite)
+ [x] Set title seo
+ [x] Set image seo
+ [x] Set facebook
+ [x] Set twitter
+ [x] Set mobile banner
+ [x] Set tablet banner
+ [x] Set desktop banner
+ [x] Set title site
+ [x] Set subtitle site
+ [x] Set video site
+
+Whats App (FabioChiquezi\PetitionData\Tests\Unit\Domain\InformationGeralSite\WhatsApp)
+ [x] Numero whats app nao tem letras
+ [x] Numero whats app nao e maior que 14
+ [x] Numero whats app menor que 13
+ [x] Set numero whats app
+
 Repository (FabioChiquezi\PetitionData\Tests\Integrations\Infra\InformationGeneralSite\Repository)
  [x] Get all
  [x] Add data with data set #0

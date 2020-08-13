@@ -1,0 +1,18 @@
+<doctrine-mapping>
+    <entity 
+        name="FabioChiquezi\PetitionData\Domain\CustomForm\CustomForm" 
+        table="custom_form">
+
+        <id 
+            name="id" 
+            column="id" 
+            type="integer">
+                <generator strategy="IDENTITY" />
+        </id>
+
+        <field name="name"          nullable="false"            column="name"           type="string"       length="50" />
+        <field name="type"          nullable="false"            column="type"           type="integer" />
+        <field name="placeholder"   nullable="true"             column="placeholder"    type="string"       length="100" />
+        <field name="required"      nullable="false"            column="required"       type="integer"/>
+    </entity>
+</doctrine-mapping>
